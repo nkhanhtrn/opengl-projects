@@ -72,10 +72,12 @@ int main()
 
     /* Buffers */
     float vertices[] = {
-        0.5f,  0.5f, 0.0f,  // top right
-        0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
+        0.0f,  0.5f, 0.0f,  // top right
+        0.5f, 0.0f, 0.0f,  // bottom right
+        -0.5f, 0.0f, 0.0f,  // bottom left
+        0.5f, 0.0f, 0.0f,  // bottom right
+        -0.5f, 0.0f, 0.0f,  // bottom left
+        0.0f,  -0.5f, 0.0f,  // top right
     };
     unsigned int indices[] = {  // note that we start from 0!
         0, 1, 3,   // first triangle
@@ -94,8 +96,8 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // buffer: EBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     /* setup vertex data format (a.k.a vertex attributes) */
     // how shader parses vertex data
@@ -121,8 +123,8 @@ int main()
         
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // rebind if there're multiple VAO
-        //glDrawArrays(GL_TRIANGLES, 0, 6);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         //glBindVertexArray(0);
 
         // final steps
@@ -133,7 +135,7 @@ int main()
     // cleanup
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
+    //glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
     glfwTerminate();
     return 0;
