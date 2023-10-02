@@ -65,9 +65,9 @@ int main()
     /* setup buffers */
     float vertices[] = {
         // positions         // colors
-        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
-        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
+        0.5f, 0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+        -0.5f, 0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+        0.0f,  -0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // bottom 
     };
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
@@ -93,10 +93,8 @@ int main()
         glUseProgram(shaderProgram);
 
         // uproot color
-        float timeValue = glfwGetTime();
-        float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-        glUniform4f(vertexColorLocation, greenValue, greenValue, greenValue, 1.0f);
+        int xOffsetLocation = glGetUniformLocation(shaderProgram, "xOffset");
+        glUniform1f(xOffsetLocation, 0.5f);
     
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawArrays(GL_TRIANGLES, 0, 3);
