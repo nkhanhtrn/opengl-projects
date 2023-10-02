@@ -92,10 +92,6 @@ int main()
 
         glUseProgram(shaderProgram);
 
-        // uproot color
-        int xOffsetLocation = glGetUniformLocation(shaderProgram, "xOffset");
-        glUniform1f(xOffsetLocation, 0.5f);
-    
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawArrays(GL_TRIANGLES, 0, 3);
     
