@@ -1,1 +1,1 @@
-g++ src/main.cpp src/glad.c -lglfw -lGL -lX11 -lpthread -lXrandr -ldl -o a.out
+g++ src/main.cpp src/glad.c src/stb_image.cpp -lglfw -lGL -lX11 -lpthread -lXrandr -ldl -o a.out
